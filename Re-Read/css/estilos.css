@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: monospace;
 }
 
 body {
@@ -13,27 +14,36 @@ body {
   text-align: left;
   color: white;
   font-size: 20px;
-  font-family: monospace;
 }
 
 /* Style the header */
 .header {
-  background-color: #f1f1f1;
+  background-color: white;
   padding: 20px;
   text-align: center;
+}
+
+.header h1{
+  font-size: 80px;
+}
+
+.header p{
+  font-size: 20px;
+  padding: 0 20%;
 }
 
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: white;
+  border-bottom: 2px solid #D35400;
 }
 
 /* Style the topnav links */
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -41,7 +51,7 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #D35400;
   color: black;
 }
 
@@ -61,6 +71,13 @@ body {
   width: 33.3%;
 }
 
+/* Right column parrafs*/
+.column.right p{
+  padding: 20px;
+  background-color: #117A65;
+  color: white;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -70,7 +87,7 @@ body {
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .column.side, .column.middle {
+  .column.left, .column.right, .topnav a{
     width: 100%;
   }
 }
