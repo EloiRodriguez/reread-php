@@ -29,24 +29,32 @@
     </div>
 
     <h3>Toda la actualidad en eBook</h3>
-
+    <!--
     <div class="ebook">
         <a href="https://play.google.com/store/books/details/Ricky_Schneider_Escalas_Mixolidias_Guitarra_Paso_a?id=MCjtDwAAQBAJ"></a><img src="../img/ebook_1.jpg" alt="ebook 1"></a>
         <div>Escalas Mixolidias - Guitarra Paso a Paso</div>
     </div>
-    <div class="ebook">
-        <a href="https://play.google.com/store/books/details/Robert_Bryndza_%C3%9Altimo_suspiro?id=OlXgDwAAQBAJ"></a><img src="../img/ebook_2.jpg" alt="ebook 2">
-        <div>Último suspiro</div>
-    </div>
-    <div class="ebook">
-        <a href="https://play.google.com/store/books/details/Juan_G%C3%B3mez_Jurado_Esp%C3%ADa_de_Dios?id=NzkuCwAAQBAJ"></a><img src="../img/ebook_3.jpg" alt="ebook 3">
-        <div>Espía de Dios</div>
-    </div>
-    <div class="ebook">
-        <a href="https://play.google.com/store/books/details/C%C3%A9sar_Cervera_Moreno_Los_Borbones_y_sus_locuras?id=25fqDwAAQBAJ"></a><img src="../img/ebook_4.jpg" alt="ebook 4">
-        <div>Los Borbones y sus locuras</div>
-    </div>
+    -->
+    <?php
+    //1. Coneccion con la base de datos
+    include '../services/connection.php';
 
+    //2. Selección y muestra de datos de la base de datos
+    $result = mysqli_query($conn, "SELECT Books.Descripcion, Books.img, Books.Title FROM Books WHERE eBook !='0'");
+
+    if (!empty($result) && mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_array($result)) {
+        echo "<div class='gallery'>";
+        //Añadimos la imagen a la paguina con la etiqueta img de HTML
+        echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
+        //Añadimos el titulo a la pagina con la etiqueta h2 de HTML
+        //echo "<div class='desc'".$row['Title']."</div>";
+        echo "</div>";
+      }
+    }else {
+      echo "0 resultados";
+    }
+    ?>
   </div>
   
   <div class="column right">
