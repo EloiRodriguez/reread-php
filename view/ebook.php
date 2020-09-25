@@ -23,9 +23,9 @@
 
 
     <div class="topnav">
-      <a href="../index.html">Re-Read</a>
-      <a href="../view/libros.html">Libros</a>
-      <a href="eBook.html">eBooks</a>
+      <a href="../index.php">Re-Read</a>
+      <a href="../view/libros.php">Libros</a>
+      <a href="eBook.php">eBooks</a>
     </div>
 
     <h3>Toda la actualidad en eBook</h3>
