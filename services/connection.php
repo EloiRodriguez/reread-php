@@ -7,7 +7,7 @@ $pass="";
 $db="reread";
 
 //Crear la conexión
-$conn = mysqli_connect($host, $user, $db);
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 //Checkear la conexión
 if ($conn){
