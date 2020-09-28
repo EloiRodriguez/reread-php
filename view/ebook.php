@@ -40,11 +40,11 @@
     include '../services/connection.php';
 
     //2. Selección y muestra de datos de la base de datos
-    $result = mysqli_query($conn, "SELECT Books.Descripcion, Books.img, Books.Title FROM Books WHERE eBook !='0'");
+    $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
 
     if (!empty($result) && mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_array($result)) {
-        echo "<div class='gallery'>";
+        echo "<div class='ebook'>";
         //Añadimos la imagen a la paguina con la etiqueta img de HTML
         echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
         //Añadimos el titulo a la pagina con la etiqueta h2 de HTML
