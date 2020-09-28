@@ -1,1 +1,1 @@
-https://eloirodriguez.github.io/reread-php/index.html
+https://eloirodriguez.github.io/reread-php/index.php
