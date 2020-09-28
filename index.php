@@ -37,7 +37,7 @@
   
   <div class="column right">
     <?php
-    include '../services/connection.php';
+    include 'services/connection.php';
     $resul = mysqli_query($conn, "SELECT Books.Title FROM Books WHERE Top = 1");
     echo "<h2>Side</h2>";
     if (!empty($resul) && mysqli_num_rows($resul) > 0) {
