@@ -36,11 +36,19 @@
   </div>
   
   <div class="column right">
-    <h2>Side</h2>
-    <p>Cien años de soledad.</p>
-    <p>Crónica de una muerte anunciada.</p>
-    <p>El otoño del patriarca.</p>
-    <p>El general en su laberinto.</p>
+    <?php
+    include 'services/connection.php';
+    $resul = mysqli_query($conn, "SELECT Books.Title FROM Books WHERE Top = 1");
+    echo "<h2>Side</h2>";
+    if (!empty($resul) && mysqli_num_rows($resul) > 0) {
+      while ($row = mysqli_fetch_array($resul)) {
+        //Añadimos el titulo del libro en topventas con la etiqueta h2 de HTML
+        echo "<p>".$row['Title']."</p>";
+      }
+    }else {
+      echo "0 resultados";
+    }
+    ?>
   </div>
 </div>
   
