@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Website Layout</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../css/estilos.css">
-
+  <title>CSS Website Layout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/estilos.css">
 </head>
 <body>
 
@@ -43,13 +42,18 @@
     $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
 
     if (!empty($result) && mysqli_num_rows($result) > 0) {
+      $i = 0;
       while ($row = mysqli_fetch_array($result)) {
+        $i++;
         echo "<div class='ebook'>";
         //Añadimos la imagen a la paguina con la etiqueta img de HTML
         echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
         //Añadimos el titulo a la pagina con la etiqueta h2 de HTML
-        //echo "<div class='desc'".$row['Title']."</div>";
+        echo "<div class='desc'id='desc".$i."'><p>".$row['Description']."</p></div>";
         echo "</div>";
+        if ($i%3==0){
+          echo "<div style='clear:both;'><div>";
+        }
       }
     }else {
       echo "0 resultados";
