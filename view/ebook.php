@@ -28,6 +28,14 @@
     </div>
 
     <h3>Toda la actualidad en eBook</h3>
+
+    <div>
+      <form action="/action_page.php" method="$_POST">
+        <label for="fautor">Autor</label>
+        <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">      
+        <input type="submit" value="Submit">
+      </form>
+    </div>
     <!--
     <div class="ebook">
         <a href="https://play.google.com/store/books/details/Ricky_Schneider_Escalas_Mixolidias_Guitarra_Paso_a?id=MCjtDwAAQBAJ"></a><img src="../img/ebook_1.jpg" alt="ebook 1"></a>
@@ -58,6 +66,7 @@
     }else {
       echo "0 resultados";
     }
+    
     ?>
   </div>
   
