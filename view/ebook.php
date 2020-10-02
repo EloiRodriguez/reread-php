@@ -58,7 +58,7 @@
 
         if (isset($_POST['fautor'])) {
           
-        $query="SELECT Books.Description, Books.img, Books.Title FROM Books INNER JOIN BooksAuthors ON Id=BooksAuthors.BookId INNER JOIN Authors ON Authors.Id=BooksAuthors.AuthorId WHERE Authors.Name LIKE '%{$_POST['fautor']}%' AND Authors.Country LIKE '{$_POST['country']}' AND Books.Title LIKE '%{$_POST['ftitle']}%'";
+        $query="SELECT Books.Description, Books.img, Books.Title FROM Books INNER JOIN BooksAuthors ON Id=BooksAuthors.BookId INNER JOIN Authors ON Authors.Id=BooksAuthors.AuthorId WHERE Authors.Name LIKE '%{$_POST['fautor']}%' AND Authors.Country LIKE '{$_POST['country']}' AND Books.Title LIKE '%{$_POST['ftitulo']}%'";
         echo $query;  
         $result = mysqli_query($conn,$query);
         }else {
