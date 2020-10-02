@@ -7,6 +7,12 @@ body {
   margin: 0;
 }
 
+.content{
+  margin: auto;
+  width: 80%;
+}
+
+
 /* Style the logo */
 .logo {
   background-color: #0b5345;
@@ -69,6 +75,7 @@ body {
 /* Right column */
 .column.right {
   width: 33.3%;
+  float: right;
 }
 
 /* Right column parrafs*/
@@ -97,7 +104,7 @@ body {
 
 /*Clases para la galeria de eBooks*/
 .ebook{
-  float: left;
+  float: right;
   width: 33.3%;
   padding: 20px;
 }
@@ -108,6 +115,7 @@ body {
 
 .ebook:hover{
   background-color: red;
+  color: white;
 }
 
 input[type=text], select {
@@ -135,7 +143,7 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-div {
+form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
