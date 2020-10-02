@@ -42,7 +42,7 @@
               $query="SELECT DISTINCT Authors.Country FROM Authors ORDER BY Country";
               $result=mysqli_query($conn,$query);
               while ($row = mysqli_fetch_array($result)) {
-                echo '<option value="'.$row[Country].'">'.$row[Country].'</option>';
+                echo '<option value="'.$row['Country'].'">'.$row['Country'].'</option>';
               }
               
             ?>
