@@ -33,7 +33,9 @@
       <div class="form">
         <form action="ebook.php" method="POST">
           <label for="fautor">Autor</label>
-          <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor.."> 
+          <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">
+          <label for="fautor">Titulo</label>
+          <input type="text" id="ftitulo" name="ftitulo" placeholder="Introduce titulo del libro.."> 
           <label for="country">Country</label>
           <select id="country" name="country">
             <option value="%">Todos los paises</option>
@@ -43,8 +45,7 @@
               $result=mysqli_query($conn,$query);
               while ($row = mysqli_fetch_array($result)) {
                 echo '<option value="'.$row['Country'].'">'.$row['Country'].'</option>';
-              }
-              
+              } 
             ?>
           </select>    
           <input type="submit" value="Submit">
@@ -57,12 +58,11 @@
 
         if (isset($_POST['fautor'])) {
           
-        $query="SELECT Books.Description, Books.img, Books.Title FROM Books INNER JOIN BooksAuthors ON Id=BooksAuthors.BookId INNER JOIN Authors ON Authors.Id=BooksAuthors.AuthorId WHERE Authors.Name LIKE '%{$_POST['fautor']}%' AND Authors.Country LIKE '{$_POST['country']}'";
+        $query="SELECT Books.Description, Books.img, Books.Title FROM Books INNER JOIN BooksAuthors ON Id=BooksAuthors.BookId INNER JOIN Authors ON Authors.Id=BooksAuthors.AuthorId WHERE Authors.Name LIKE '%{$_POST['fautor']}%' AND Authors.Country LIKE '{$_POST['country']}' AND Books.Title LIKE '%{$_POST['ftitle']}%'";
         echo $query;  
         $result = mysqli_query($conn,$query);
-
         }else {
-            $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
+              $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
         }
           //2. Selección y muestra de datos de la base de datos
 
