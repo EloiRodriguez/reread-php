@@ -16,49 +16,76 @@
 </div>
 
 <div class="row">
-
-  
   <div class="column left">
-
-
     <div class="topnav">
       <a href="../index.php">Re-Read</a>
       <a href="../view/libros.php">Libros</a>
       <a href="eBook.php">eBooks</a>
     </div>
+        <!--
+        <div class="ebook">
+            <a href="https://play.google.com/store/books/details/Ricky_Schneider_Escalas_Mixolidias_Guitarra_Paso_a?id=MCjtDwAAQBAJ"></a><img src="../img/ebook_1.jpg" alt="ebook 1"></a>
+            <div>Escalas Mixolidias - Guitarra Paso a Paso</div>
+        </div>
+        -->
+    <div class="content">
+      <h3>Toda la actualidad en eBook</h3>
+      <div class="form">
+        <form action="ebook.php" method="POST">
+          <label for="fautor">Autor</label>
+          <input type="text" id="fautor" name="fautor" placeholder="Introduce el autor..">
+          <label for="fautor">Titulo</label>
+          <input type="text" id="ftitulo" name="ftitulo" placeholder="Introduce titulo del libro.."> 
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="%">Todos los paises</option>
+            <?php 
+              include '../services/connection.php';
+              $query="SELECT DISTINCT Authors.Country FROM Authors ORDER BY Country";
+              $result=mysqli_query($conn,$query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo '<option value="'.$row['Country'].'">'.$row['Country'].'</option>';
+              } 
+            ?>
+          </select>    
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 
-    <h3>Toda la actualidad en eBook</h3>
-    <!--
-    <div class="ebook">
-        <a href="https://play.google.com/store/books/details/Ricky_Schneider_Escalas_Mixolidias_Guitarra_Paso_a?id=MCjtDwAAQBAJ"></a><img src="../img/ebook_1.jpg" alt="ebook 1"></a>
-        <div>Escalas Mixolidias - Guitarra Paso a Paso</div>
-    </div>
-    -->
-    <?php
-    //1. Coneccion con la base de datos
-    include '../services/connection.php';
+      <?php
+        //1. Coneccion con la base de datos
+        include '../services/connection.php';
 
-    //2. Selección y muestra de datos de la base de datos
-    $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
-
-    if (!empty($result) && mysqli_num_rows($result) > 0) {
-      $i = 0;
-      while ($row = mysqli_fetch_array($result)) {
-        $i++;
-        echo "<div class='ebook'>";
-        //Añadimos la imagen a la paguina con la etiqueta img de HTML
-        echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
-        //Añadimos el titulo a la pagina con la etiqueta h2 de HTML
-        echo "<div class='desc'id='desc".$i."'><p>".$row['Description']."</p></div>";
-        echo "</div>";
-        if ($i%3==0){
-          echo "<div style='clear:both;'><div>";
+        if (isset($_POST['fautor'])) {
+          
+        $query="SELECT Books.Description, Books.img, Books.Title FROM Books INNER JOIN BooksAuthors ON Id=BooksAuthors.BookId INNER JOIN Authors ON Authors.Id=BooksAuthors.AuthorId WHERE Authors.Name LIKE '%{$_POST['fautor']}%' AND Authors.Country LIKE '{$_POST['country']}' AND Books.Title LIKE '%{$_POST['ftitulo']}%'";
+        echo $query;  
+        $result = mysqli_query($conn,$query);
+        }else {
+              $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook !='0'");
         }
-      }
-    }else {
-      echo "0 resultados";
-    }
-    ?>
+          //2. Selección y muestra de datos de la base de datos
+
+        if (!empty($result) && mysqli_num_rows($result) > 0) {
+          $i = 0;
+          while ($row = mysqli_fetch_array($result)) {
+            $i++;
+            echo "<div class='ebook'>";
+            //Añadimos la imagen a la paguina con la etiqueta img de HTML
+            echo "<img src=../img/".$row['img']." alt='".$row['Title']."'>";
+            //Añadimos el titulo a la pagina con la etiqueta h2 de HTML
+            echo "<div class='desc'id='desc".$i."'><p>".$row['Description']."</p></div>";
+            echo "</div>";
+            if ($i%3=='0'){
+              echo "<div style='clear:both;'><div>";
+            }
+          }
+        }else {
+          echo "0 resultados";
+        }     
+        
+      ?>
+    </div>
   </div>
   
   <div class="column right">
